@@ -1,17 +1,20 @@
+class Estudiante {
+    constructor(nombre, nota){
+        this.nombre = nombre
+        this.nota = nota
+    }
+} 
 
-let edad = prompt('ingrese su edad ')
-let sumatoriaDeEdades = 0
-let contador = 0 
-while (edad != 'esc'){
-sumatoriaDeEdades += parseInt(edad)
-contador++
-edad = prompt('ingrese su edad')
+let nombre = prompt('Bienvenido estudiante, ingrese su nombre - Para salir ingrese el texto "esc"')
+let nota = prompt('ingrese su nota')
+let estudiantes = []
+
+while (nombre != 'esc'){
+    estudiantes.push(new Estudiante(nombre,nota))
+    nombre = prompt('Bienvenido estudiante, ingrese su nombre - Para salir ingrese el texto "esc"')
+    nota = prompt('ingrese su nota')
 }
-const promedio = sumatoriaDeEdades / contador
-alert('la sumatoria fue ' + sumatoriaDeEdades)
-alert('el promedio de edades es de ' + promedio)
-if(promedio % 2 ===0){
-    alert('el promedio de edades es un numero par')
-} else{
-    alert('el promedio de edades es un numero impar')
-}
+
+const aprobados = estudiantes.filter((estudiante)=>(estudiante.nota>=6))
+const desaprobados = estudiantes.filter((estudiante)=>(estudiante.nota<6))
+alert(`Teniendo en cuenta que se aprueba a partir de 6, aprobaron ${aprobados.map((estudiante)=>estudiante.nombre).join(', ')} y desaprobaron ${desaprobados.map((estudiante)=>estudiante.nombre).join(', ')} ` )
